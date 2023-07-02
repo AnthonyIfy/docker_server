@@ -10,7 +10,7 @@ terraform {
     bucket = "austinobioma-docker-tfstate"
     dynamodb_table = "app-state"
     key    = "LockID"
-    region = "us-east-1"
+    region = "us-west-2"
     profile = "austinobioma-realcloud"
   }
 }
