@@ -8,7 +8,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "austinobioma-docker-tfstate"
-    dynamodb_table = "app-state"
+    dynamodb_table = "tee-state"
     key    = "LockID"
     region = "us-west-2"
     profile = "jesmmet_profile"
