@@ -1,6 +1,6 @@
 provider "aws" {
-  region     = "us-west-2"
-  profile = "jesmmet_profile" 
+  region     = "us-west-1"
+  profile = "asher" 
 }
 
 resource "aws_s3_bucket" "terraform_state" {
@@ -20,7 +20,7 @@ resource "aws_s3_bucket_versioning" "terraform_state" {
 }
 
 resource "aws_dynamodb_table" "terraform_state_lock" {
-  name           = "tee-state"
+  name           = "asher-state"
   read_capacity  = 1
   write_capacity = 1
   hash_key       = "LockID"
