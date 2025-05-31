@@ -7,8 +7,8 @@ provider "aws" {
 # Create a remote backend for your terraform 
 terraform {
   backend "s3" {
-    bucket = "austinobioma-docker-tfstate"
-    dynamodb_table = "asher-state"
+    bucket = "anthony-docker-tfstate"
+    dynamodb_table = "anthony-state"
     key    = "LockID"
     region = "us-west-1"
     profile = "asher"
@@ -50,6 +50,22 @@ resource "aws_security_group" "ec2_security_group" {
     description      = "http proxy access"
     from_port        = 8080
     to_port          = 8080
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+ingress {
+    description      = "http proxy access"
+    from_port        = 8085
+    to_port          = 8085
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+ingress {
+    description      = "http proxy access"
+    from_port        = 8081
+    to_port          = 8081
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
   }
@@ -126,5 +142,5 @@ resource "aws_instance" "ec2_instance1" {
 
 # print the url of the docker server
 output "website_url" {
-  value     = join ("", ["http://", aws_instance.ec2_instance.public_dns, ":", "8080"])
+  value     = join ("", ["http://", aws_instance.ec2_instance1.public_dns, ":", "8080"])
 }
